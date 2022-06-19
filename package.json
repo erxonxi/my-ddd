@@ -8,9 +8,14 @@
   },
   "scripts": {
     "dev:mooc": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/Mooc/start.ts",
+    "test": "npm run test:features",
     "test:features": "npm run test:mooc:features",
     "test:mooc:features": "NODE_ENV=test cucumber-js -p mooc",
-    "test": "test"
+    "build": "npm run build:clean && npm run build:tsc && npm run build:di",
+    "build:tsc": "tsc",
+    "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
+    "build:clean": "rm -r dist; exit 0",
+    "start:mooc": "NODE_ENV=production node dist/src/apps/Mooc/start.js"
   },
   "author": "Rubén Ruiz Pedreira",
   "license": "MIT",
@@ -27,6 +32,7 @@
   "dependencies": {
     "@types/node": "^18.0.0",
     "compression": "^1.7.4",
+    "copy": "^0.3.2",
     "errorhandler": "^1.5.1",
     "express": "^4.18.1",
     "express-promise-router": "^4.1.1",
