@@ -12,10 +12,11 @@
     "test:features": "npm run test:mooc:features",
     "test:mooc:features": "NODE_ENV=test cucumber-js -p mooc",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
-    "build:tsc": "tsc",
+    "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
-    "start:mooc": "NODE_ENV=production node dist/src/apps/Mooc/start.js"
+    "start:mooc": "NODE_ENV=production node dist/src/apps/Mooc/start.js",
+    "lint": "eslint src/**/*.ts{,x}"
   },
   "author": "Rubén Ruiz Pedreira",
   "license": "MIT",
@@ -26,18 +27,23 @@
     "@types/express": "^4.17.13",
     "@types/glob": "^7.2.0",
     "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.18.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@types/node": "^18.0.0",
     "compression": "^1.7.4",
-    "copy": "^0.3.2",
+    "copy": "^0.0.1",
     "errorhandler": "^1.5.1",
     "express": "^4.18.1",
     "express-promise-router": "^4.1.1",
     "helmet": "^5.1.0",
     "http-status": "^1.5.2",
+    "node-dependency-injection": "^3.0.2",
+    "prettier": "^2.7.1",
     "supertest": "^6.2.3",
     "ts-node": "^10.8.1"
   }
