@@ -1,0 +1,20 @@
+{
+    "extends": "recommended",
+    "rules": {
+        "CatchException": {
+            "enabled": false
+        },
+        "CompileStatic": {
+            "enabled": false
+        },
+        "DuplicateStringLiteral": {
+            "enabled": false
+        },
+        "LineLength": {
+            "enabled": false
+        },
+        "NestedBlockDepth": {
+            "enabled": false
+        }
+    }
+}
