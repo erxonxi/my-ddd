@@ -1,0 +1,2 @@
+imports:
+  - { resource: ./Mooc/app.yaml }

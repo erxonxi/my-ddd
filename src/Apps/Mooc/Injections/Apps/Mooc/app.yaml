@@ -1,0 +1,4 @@
+services:
+  Apps.Mooc.Controllers.StatusGetController:
+    class: ../../../Controllers/StatusGetController
+    arguments: []

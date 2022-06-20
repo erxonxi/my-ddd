@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev:mooc": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/Mooc/start.ts",
+    "dev:mooc": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/Apps/Mooc/start.ts",
     "test": "npm run test:features",
     "test:features": "npm run test:mooc:features",
     "test:mooc:features": "NODE_ENV=test cucumber-js -p mooc",
@@ -15,7 +15,7 @@
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
-    "start:mooc": "NODE_ENV=production node dist/src/apps/Mooc/start.js",
+    "start:mooc": "NODE_ENV=production node dist/src/Apps/Mooc/start.js",
     "lint": "eslint src/**/*.ts{,x}"
   },
   "author": "Rubén Ruiz Pedreira",
@@ -42,7 +42,7 @@
     "express-promise-router": "^4.1.1",
     "helmet": "^5.1.0",
     "http-status": "^1.5.2",
-    "node-dependency-injection": "^3.0.2",
+    "node-dependency-injection": "^2.6.11",
     "prettier": "^2.7.1",
     "supertest": "^6.2.3",
     "ts-node": "^10.8.1"

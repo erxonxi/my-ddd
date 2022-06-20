@@ -9,7 +9,7 @@ import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
 
-import { registerRoutes } from './routes';
+import { registerRoutes } from './Routes';
 
 export class Server {
   private express: express.Express;

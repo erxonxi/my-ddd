@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import request from 'supertest';
-import { MoocBackendApp } from '../../../../../src/apps/Mooc/MoocBackendApp';
+import { MoocBackendApp } from '../../../../../src/Apps/Mooc/MoocBackendApp';
 
 let _request: request.Test;
 let _response: request.Response;
