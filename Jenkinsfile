@@ -15,8 +15,6 @@ pipeline {
       steps {
         setCompletBuildStatus('ci/my-ddd/deps', 'Installing Dependencies...', 'PENDING')
         setCompletBuildStatus('ci/my-ddd/tests:features', 'Testing Features...', 'PENDING')
-        sh 'docker ps'
-        sh 'docker-compose up -d mongo rabbitmq elasticsearch'
       }
     }
 
