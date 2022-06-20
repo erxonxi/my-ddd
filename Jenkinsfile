@@ -13,8 +13,8 @@ pipeline {
   stages {
     stage('Preparing...') {
       steps {
-        setCompletBuildStatus('ci/my-ddd/deps', 'Installing Dependencies...', 'PENDING')
-        setCompletBuildStatus('ci/my-ddd/tests:features', 'Testing Features...', 'PENDING')
+        setCompletBuildStatus('ci/deps', 'Installing Dependencies...', 'PENDING')
+        setCompletBuildStatus('ci/tests:features', 'Testing Features...', 'PENDING')
       }
     }
 
@@ -23,9 +23,9 @@ pipeline {
         script {
           try {
             sh 'npm install'
-            setCompletBuildStatus('ci/my-ddd/deps', 'Installed Deps. Correctly', 'SUCCESS')
+            setCompletBuildStatus('ci/deps', 'Installed Deps. Correctly', 'SUCCESS')
           } catch (Exception e) {
-            setCompletBuildStatus('ci/my-ddd/deps', 'Error Installing Dependencies', 'FAILURE')
+            setCompletBuildStatus('ci/deps', 'Error Installing Dependencies', 'FAILURE')
           }
         }
       }
@@ -51,9 +51,9 @@ pipeline {
             script {
               try {
                 sh 'npm run test:features'
-                setCompletBuildStatus('ci/my-ddd/tests:features', 'Tests:Features Correctly', 'SUCCESS')
+                setCompletBuildStatus('ci/tests:features', 'Tests:Features Correctly', 'SUCCESS')
               } catch (Exception e) {
-                setCompletBuildStatus('ci/my-ddd/tests:features', 'Error Tests Features', 'FAILURE')
+                setCompletBuildStatus('ci/tests:features', 'Error Tests Features', 'FAILURE')
               }
             }
           }
