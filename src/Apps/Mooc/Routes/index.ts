@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { Router } from 'express';
-import glob from 'glob';
+import {Router} from 'express';
+import {attachControllers} from "@decorators/express";
+import {StatusController} from "../Controllers/StatusController";
 
 export function registerRoutes(router: Router) {
-  const routes = glob.sync(__dirname + '/**/*.route.*');
-  routes.map(route => register(route, router));
-}
-
-function register(routePath: string, router: Router) {
-  const route = require(routePath);
-  route.register(router);
+  const controllers = [
+    StatusController
+  ]
+  attachControllers(router, controllers)
 }

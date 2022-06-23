@@ -1,4 +1,10 @@
 services:
   Apps.Mooc.Controllers.StatusGetController:
     class: ../../../Controllers/StatusGetController
-    arguments: []
+    arguments: [ ]
+
+  Apps.Mooc.Controllers.StatusController:
+    class: ../../../Controllers/StatusController
+    arguments: [ ]
+    tags:
+      - { name: 'controller' }
