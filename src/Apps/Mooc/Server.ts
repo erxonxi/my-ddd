@@ -36,7 +36,6 @@ export class Server {
       console.error(err);
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
     });
-
   }
 
   async listen(): Promise<void> {
