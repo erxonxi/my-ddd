@@ -6,3 +6,7 @@ services:
   Mooc.Users.CreateUser:
     class: ../../../../Contexts/Mooc/Users/Application/CreateUser
     arguments: [ '@Mooc.Users.Repository' ]
+
+  Mooc.Users.DeleteUser:
+    class: ../../../../Contexts/Mooc/Users/Application/DeleteUser
+    arguments: [ '@Mooc.Users.Repository' ]
