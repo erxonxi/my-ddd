@@ -1,4 +1,4 @@
-import { UserRepository } from '../Infrastructure/UserRepository';
+import { UserRepository } from '../Domain/UserRepository';
 import { User } from '../Domain/User';
 import { UserId } from '../Domain/UserId';
 import { UserEmail } from '../Domain/UserEmail';

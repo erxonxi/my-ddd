@@ -2,3 +2,8 @@ imports:
   - { resource: ./Apps/app.yaml }
   - { resource: ./Shared/app.yaml }
   - { resource: ./Users/app.yaml }
+
+services:
+  Mooc.EnvironmentArranger:
+    class: ../../../../../tests/Contexts/Shared/Infrastructure/Mongo/MongoEnvironmentArranger
+    arguments: ['@Shared.ConnectionManager']

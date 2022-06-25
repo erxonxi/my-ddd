@@ -2,6 +2,8 @@ import assert from 'assert';
 import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import request from 'supertest';
 import { MoocBackendApp } from '../../../../../src/Apps/Mooc/MoocBackendApp';
+import { EnvironmentArranger } from '../../../../Contexts/Shared/Infrastructure/Arranger/EnvironmentArranger';
+import container from '../../../../../src/Apps/Mooc/Injections';
 
 let _request: request.Test;
 let _response: request.Response;
@@ -28,15 +30,15 @@ Then('the response content should be:', response => {
 });
 
 BeforeAll(async () => {
-  // const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
-  // await (await environmentArranger).arrange();
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).arrange();
   application = new MoocBackendApp();
   await application.start();
 });
 
 AfterAll(async () => {
-  // const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
-  // await (await environmentArranger).arrange();
-  // await (await environmentArranger).close();
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).arrange();
+  await (await environmentArranger).close();
   await application.stop();
 });

@@ -1,7 +1,7 @@
-import { User } from '../Domain/User';
+import { User } from './User';
 import { Nullable } from '../../../Shared/Domain/Nullable';
-import { UserId } from '../Domain/UserId';
-import { UserEmail } from '../Domain/UserEmail';
+import { UserId } from './UserId';
+import { UserEmail } from './UserEmail';
 
 export interface UserRepository {
   save(course: User): Promise<void>;

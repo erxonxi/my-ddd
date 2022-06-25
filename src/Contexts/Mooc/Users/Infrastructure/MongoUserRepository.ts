@@ -1,7 +1,7 @@
 import { MongoRepository } from '../../../Shared/Infrastructure/Mongo/MongoRepository';
 import { User } from '../Domain/User';
 import { UserId } from '../Domain/UserId';
-import { UserRepository } from './UserRepository';
+import { UserRepository } from '../Domain/UserRepository';
 import { Nullable } from '../../../Shared/Domain/Nullable';
 import { UserEmail } from '../Domain/UserEmail';
 
