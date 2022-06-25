@@ -1,0 +1,8 @@
+services:
+  Mooc.Users.Repository:
+    class: ../../../../Contexts/Mooc/Users/Infrastructure/MongoUserRepository
+    arguments: [ '@Shared.ConnectionManager' ]
+
+  Mooc.Users.CreateUser:
+    class: ../../../../Contexts/Mooc/Users/Application/CreateUser
+    arguments: [ '@Mooc.Users.Repository' ]
