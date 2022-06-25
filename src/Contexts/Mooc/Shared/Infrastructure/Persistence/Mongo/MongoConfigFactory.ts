@@ -1,9 +1,10 @@
 import MongoConfig from '../../../../../Shared/Infrastructure/Mongo/MongoConfig';
+import config from '../../Config';
 
 export class MongoConfigFactory {
   static createConfig(): MongoConfig {
     return {
-      url: 'mongodb://localhost'
+      url: config.get('mongo.url')
     };
   }
 }
