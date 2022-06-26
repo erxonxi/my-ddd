@@ -12,7 +12,7 @@
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "npm run test:mooc:features",
-    "test:mooc:features": "NODE_ENV=test cucumber-js -p mooc",
+    "test:mooc:features": "NODE_ENV=test cucumber-js -p mooc --exit",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
