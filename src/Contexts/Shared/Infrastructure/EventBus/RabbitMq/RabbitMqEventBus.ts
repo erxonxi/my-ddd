@@ -6,6 +6,7 @@ import { DomainEventJsonDeserializer } from '../DomainEventJsonDeserializer';
 import { DomainEventMapping } from '../DomainEventMapping';
 import RabbitMqConfig from './RabbitMqConfig';
 import Logger from '../../../Domain/Logger';
+import config from '../../../../Mooc/Shared/Infrastructure/Config';
 
 export default class RabbitMqEventbus implements EventBus {
   private connection: Connection;
@@ -59,7 +60,7 @@ export default class RabbitMqEventbus implements EventBus {
         },
         meta: {}
       });
-      this.logger.info(`[RabbitMqEventBus] Event to be published: ${event.eventName}`);
+      config.get('env') != 'test' && this.logger.info(`[RabbitMqEventBus] Event to be published: ${event.eventName}`);
       executions.push(this.exchange.send(message));
     });
 

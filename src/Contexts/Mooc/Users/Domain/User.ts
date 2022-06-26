@@ -3,6 +3,7 @@ import { UserPassword } from './UserPassword';
 import { UserEmail } from './UserEmail';
 import { UserName } from './UserName';
 import { UserId } from './UserId';
+import { UserCreatedDomainEvent } from './Events/UserCreatedDomainEvent';
 
 export class User extends AggregateRoot {
   id: UserId;
@@ -29,12 +30,16 @@ export class User extends AggregateRoot {
     password: UserPassword;
     name: UserName;
   }): User {
-    return new User({
+    const user = new User({
       id,
       email,
       password,
       name
     });
+
+    user.record(new UserCreatedDomainEvent({ id: id.toString(), email: email.toString(), name: name.toString() }));
+
+    return user;
   }
 
   static fromPrimitives(plainData: { id: string; email: string; password: string; name: string }): User {

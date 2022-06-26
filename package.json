@@ -48,6 +48,7 @@
     "@decorators/di": "^1.0.3",
     "@decorators/express": "^2.6.0",
     "@types/node": "^18.0.0",
+    "amqp-ts": "^1.8.0",
     "compression": "^1.7.4",
     "convict": "^6.2.3",
     "copy": "^0.0.1",

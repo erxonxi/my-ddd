@@ -1,4 +1,4 @@
-import { Uuid } from './value-object/Uuid';
+import { Uuid } from './ValueObject/Uuid';
 
 export abstract class DomainEvent {
   static EVENT_NAME: string;
@@ -15,7 +15,7 @@ export abstract class DomainEvent {
     this.eventName = eventName;
   }
 
-  abstract toPrimitive(): Object;
+  abstract toPrimitive(): any;
 }
 
 export type DomainEventClass = { EVENT_NAME: string; fromPrimitives(...args: any[]): DomainEvent };

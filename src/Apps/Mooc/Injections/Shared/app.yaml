@@ -1,4 +1,8 @@
 services:
+  Shared.Logger:
+    class: ../../../../Contexts/Shared/Infrastructure/WinstonLogger
+    arguments: [ ]
+
   Shared.MongoConfig:
     factory:
       class: ../../../../Contexts/Mooc/Shared/Infrastructure/Persistence/Mongo/MongoConfigFactory
@@ -9,3 +13,12 @@ services:
       class: ../../../../Contexts/Shared/Infrastructure/Mongo/MongoClientFactory
       method: 'createClient'
     arguments: [ 'mooc', '@Shared.MongoConfig' ]
+
+  Shared.RabbitMqConfig:
+    factory:
+      class: ../../../../Contexts/Mooc/Shared/Infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
+  Shared.EventBus:
+    class: ../../../../Contexts/Shared/Infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: [ '@Shared.RabbitMqConfig', '@Shared.Logger' ]
