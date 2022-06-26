@@ -1,7 +1,7 @@
 services:
   Mooc.Users.Repository:
     class: ../../../../Contexts/Mooc/Users/Infrastructure/MongoUserRepository
-    arguments: [ '@Shared.ConnectionManager' ]
+    arguments: [ '@Shared.ConnectionManager', '@Shared.MongoCriteriaConverter' ]
 
   Mooc.Users.CreateUser:
     class: ../../../../Contexts/Mooc/Users/Application/CreateUser
@@ -9,4 +9,8 @@ services:
 
   Mooc.Users.DeleteUser:
     class: ../../../../Contexts/Mooc/Users/Application/DeleteUser
+    arguments: [ '@Mooc.Users.Repository' ]
+
+  Mooc.Users.FindUsersByCriteria:
+    class: ../../../../Contexts/Mooc/Users/Application/FindUsersByCriteria
     arguments: [ '@Mooc.Users.Repository' ]

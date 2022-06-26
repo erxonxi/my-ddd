@@ -21,8 +21,8 @@ export class MongoCriteriaConverter<TSchema> {
       [Operator.NOT_EQUAL, { [String(filter.field)]: { $ne: filter.value.toString() } }],
       [Operator.GT, { [String(filter.field)]: { $gt: filter.value.toString() } }],
       [Operator.LT, { [String(filter.field)]: { $lt: filter.value.toString() } }],
-      [Operator.CONTAINS, { [String(filter.field)]: { $regex: `/${filter.value.toString()}/` } }],
-      [Operator.NOT_CONTAINS, { [String(filter.field)]: { $not: { $regex: `/${filter.value.toString()}/` } } }]
+      [Operator.CONTAINS, { [String(filter.field)]: { $regex: `${filter.value.toString()}` } }],
+      [Operator.NOT_CONTAINS, { [String(filter.field)]: { $not: { $regex: `${filter.value.toString()}` } } }]
     ]);
     return map.get(filter.operator.value);
   }
