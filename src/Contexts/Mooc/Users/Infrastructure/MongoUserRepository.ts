@@ -4,6 +4,7 @@ import { UserId } from '../Domain/UserId';
 import { UserRepository } from '../Domain/UserRepository';
 import { Nullable } from '../../../Shared/Domain/Nullable';
 import { UserEmail } from '../Domain/UserEmail';
+import { Criteria } from '../../../Shared/Domain/Criteria/Criteria';
 
 export class MongoUserRepository extends MongoRepository<User> implements UserRepository {
   public save(course: User): Promise<void> {
@@ -32,6 +33,11 @@ export class MongoUserRepository extends MongoRepository<User> implements UserRe
   public async findAll(): Promise<User[]> {
     const collection = await this.collection();
     const res = await collection.find().toArray();
+    return res.map((document: any) => User.fromPrimitives({ ...document, id: String(document._id) }));
+  }
+
+  public async find(criteria: Criteria): Promise<User[]> {
+    const res = await this.findByCriteria(criteria);
     return res.map((document: any) => User.fromPrimitives({ ...document, id: String(document._id) }));
   }
 

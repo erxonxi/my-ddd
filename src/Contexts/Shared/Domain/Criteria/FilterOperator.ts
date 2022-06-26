@@ -1,5 +1,5 @@
-import { EnumValueObject } from '../value-object/EnumValueObject';
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
+import { EnumValueObject } from '../ValueObject/EnumValueObject';
+import { InvalidArgumentError } from '../ValueObject/InvalidArgumentError';
 
 export enum Operator {
   EQUAL = '=',
@@ -31,7 +31,7 @@ export class FilterOperator extends EnumValueObject<Operator> {
       case Operator.NOT_CONTAINS:
         return new FilterOperator(Operator.NOT_CONTAINS);
       case Operator.MATCH_PHRASE:
-          return new FilterOperator(Operator.MATCH_PHRASE);
+        return new FilterOperator(Operator.MATCH_PHRASE);
       default:
         throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
     }

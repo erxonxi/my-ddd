@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
+import { InvalidArgumentError } from '../ValueObject/InvalidArgumentError';
 import { FilterField } from './FilterField';
 import { FilterOperator } from './FilterOperator';
 import { FilterValue } from './FilterValue';
