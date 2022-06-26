@@ -2,8 +2,10 @@ import { DomainEvent } from './DomainEvent';
 
 export abstract class AggregateRoot {
   private domainEvents: Array<DomainEvent>;
+  readonly createdAt: Date;
 
-  constructor() {
+  protected constructor({ createdAt }: { createdAt?: Date }) {
+    this.createdAt = createdAt || new Date();
     this.domainEvents = [];
   }
 

@@ -11,8 +11,20 @@ export class User extends AggregateRoot {
   password: UserPassword;
   name: UserName;
 
-  constructor({ id, email, password, name }: { id: UserId; email: UserEmail; password: UserPassword; name: UserName }) {
-    super();
+  constructor({
+    id,
+    email,
+    password,
+    name,
+    createdAt
+  }: {
+    id: UserId;
+    email: UserEmail;
+    password: UserPassword;
+    name: UserName;
+    createdAt?: Date;
+  }) {
+    super({ createdAt });
     this.id = id;
     this.email = email;
     this.password = password;
@@ -42,12 +54,19 @@ export class User extends AggregateRoot {
     return user;
   }
 
-  static fromPrimitives(plainData: { id: string; email: string; password: string; name: string }): User {
+  static fromPrimitives(plainData: {
+    id: string;
+    email: string;
+    password: string;
+    name: string;
+    createdAt?: string;
+  }): User {
     return new User({
       id: new UserId(plainData.id),
       email: new UserEmail(plainData.email),
       password: new UserPassword(plainData.password),
-      name: new UserName(plainData.name)
+      name: new UserName(plainData.name),
+      createdAt: plainData.createdAt ? new Date(plainData.createdAt) : new Date()
     });
   }
 
@@ -56,7 +75,8 @@ export class User extends AggregateRoot {
       id: this.id.value,
       email: this.email.value,
       password: show_password ? this.password.value : null,
-      name: this.name.value
+      name: this.name.value,
+      createdAt: this.createdAt.toISOString()
     };
   }
 }
