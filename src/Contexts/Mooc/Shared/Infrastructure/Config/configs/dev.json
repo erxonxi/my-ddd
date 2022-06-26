@@ -3,7 +3,7 @@
     "url": "mongodb://localhost:27017/mooc-dev"
   },
   "github": {
-    "client_id": "09b87796a9efa61e6b70",
-    "client_secret": "699a89dd70c9c0b334df97ed7774c92b88689324"
+    "client_id": "",
+    "client_secret": ""
   }
 }
