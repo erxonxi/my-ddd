@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev:mooc": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/Apps/Mooc/start.ts",
-    "test": "npm run test:features",
+    "test": " npm run test:unit && npm run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "npm run test:mooc:features",
