@@ -14,6 +14,9 @@ services:
       method: 'createClient'
     arguments: [ 'mooc', '@Shared.MongoConfig' ]
 
+  Shared.HashEncrypt:
+    class: ../../../../Contexts/Shared/Infrastructure/Encrypt/HashEncrypt
+
   Shared.MongoCriteriaConverter:
     class: ../../../../Contexts/Shared/Infrastructure/Mongo/MongoCriteriaConverter
 

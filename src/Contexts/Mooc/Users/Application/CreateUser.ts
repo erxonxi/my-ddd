@@ -5,9 +5,10 @@ import { UserEmail } from '../Domain/UserEmail';
 import { UserPassword } from '../Domain/UserPassword';
 import { UserName } from '../Domain/UserName';
 import { EventBus } from '../../../Shared/Domain/EventBus';
+import { HashEncrypt } from '../../../Shared/Infrastructure/Encrypt/HashEncrypt';
 
 export class CreateUser {
-  constructor(private repository: UserRepository, private eventBus: EventBus) {}
+  constructor(private repository: UserRepository, private eventBus: EventBus, private hasher: HashEncrypt) {}
 
   async run({
     id,
@@ -20,7 +21,8 @@ export class CreateUser {
     password: UserPassword;
     name: UserName;
   }): Promise<void> {
-    const user = User.create({ id, email, password, name });
+    const passwordHashed = await this.hasher.hash(password.value);
+    const user = User.create({ id, email, password: new UserPassword(passwordHashed), name });
 
     await this.repository.save(user);
 

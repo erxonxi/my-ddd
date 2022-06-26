@@ -5,7 +5,7 @@ services:
 
   Mooc.Users.CreateUser:
     class: ../../../../Contexts/Mooc/Users/Application/CreateUser
-    arguments: [ '@Mooc.Users.Repository', '@Shared.EventBus' ]
+    arguments: [ '@Mooc.Users.Repository', '@Shared.EventBus', '@Shared.HashEncrypt' ]
 
   Mooc.Users.DeleteUser:
     class: ../../../../Contexts/Mooc/Users/Application/DeleteUser

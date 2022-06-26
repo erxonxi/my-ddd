@@ -70,13 +70,13 @@ export class User extends AggregateRoot {
     });
   }
 
-  toPrimitives(show_password = true) {
+  toPrimitives(showPassword = true, showCreatedAt = true) {
     return {
       id: this.id.value,
       email: this.email.value,
-      password: show_password ? this.password.value : null,
+      password: showPassword ? this.password.value : null,
       name: this.name.value,
-      createdAt: this.createdAt.toISOString()
+      createdAt: showCreatedAt ? this.createdAt.toISOString() : null
     };
   }
 }
