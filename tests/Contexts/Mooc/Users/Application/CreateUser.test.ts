@@ -2,6 +2,7 @@ import { CreateUser } from '../../../../../src/Contexts/Mooc/Users/Application/C
 import { UserMother } from '../Domain/UserMother';
 import { UserRepositoryMock } from '../__mocks__/UserRepositoryMock';
 import EventBusMock from '../../../Shared/__mocks__/EventBusMock';
+import { UserGithubId } from '../../../../../src/Contexts/Mooc/Users/Domain/UserGithubId';
 
 let eventBus: EventBusMock;
 let repository: UserRepositoryMock;
@@ -16,6 +17,7 @@ beforeEach(() => {
 describe('CreateUser', () => {
   it('should create a valid User', async () => {
     const user = UserMother.random();
+    user.githubId = new UserGithubId('');
 
     await usecase.run(user);
 
