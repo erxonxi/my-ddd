@@ -21,6 +21,7 @@ import { Order } from '../../Contexts/Shared/Domain/Criteria/Order';
 import { Criteria } from '../../Contexts/Shared/Domain/Criteria/Criteria';
 import { User } from '../../Contexts/Mooc/Users/Domain/User';
 import { UserId } from '../../Contexts/Mooc/Users/Domain/UserId';
+import config from '../../Contexts/Mooc/Shared/Infrastructure/Config';
 
 export class Server {
   private express: express.Express;
@@ -104,9 +105,9 @@ export class Server {
       // @ts-ignore
       new GitHubStrategy(
         {
-          clientID: '06eadc1b9c0e99dbf61b',
-          clientSecret: 'b73ed2f5261990c6cbf2a2163fbc9ba68795297c',
-          callbackURL: 'http://localhost:5000/auth/github/callback'
+          clientID: config.get('github.clientId'),
+          clientSecret: config.get('github.clientSecret'),
+          callbackURL: '/auth/github/callback'
         },
         async (accessToken: string, refreshToken: string, profile: any, done: any) => {
           const repository = container.get('Mooc.Users.Repository') as UserRepository;
@@ -143,7 +144,7 @@ export class Server {
       '/auth/github/callback',
       passport.authenticate('github', { failureRedirect: '/login' }),
       (req: Request, res: Response) => {
-        res.redirect('/user');
+        res.redirect('/users/me');
       }
     );
   }

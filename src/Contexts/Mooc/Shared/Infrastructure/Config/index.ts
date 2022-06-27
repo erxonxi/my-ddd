@@ -46,6 +46,20 @@ const config = convict({
       env: 'RABBITMQ_EXCHANGE',
       default: 'DomainEvents'
     }
+  },
+  github: {
+    clientId: {
+      doc: 'The GitHub ID',
+      format: String,
+      env: 'GITHUB_CLIENT_ID',
+      default: ''
+    },
+    clientSecret: {
+      doc: 'The GitHub Secret',
+      format: String,
+      env: 'GITHUB_CLIENT_SECRET',
+      default: ''
+    }
   }
 });
 
