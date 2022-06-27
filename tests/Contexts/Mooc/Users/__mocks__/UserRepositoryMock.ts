@@ -28,7 +28,7 @@ export class UserRepositoryMock implements UserRepository {
     const mock = this.mockSave.mock;
     const lastSavedUser = mock.calls[mock.calls.length - 1][0] as User;
     expect(lastSavedUser).toBeInstanceOf(User);
-    expect(lastSavedUser.toPrimitives(false, false)).toEqual(expected.toPrimitives(false, false));
+    expect(lastSavedUser.toPrimitives(false, false, false)).toEqual(expected.toPrimitives(false, false, false));
   }
 
   async search(id: UserId): Promise<Nullable<User>> {

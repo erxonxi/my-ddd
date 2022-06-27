@@ -7,24 +7,29 @@ import { UserIdMother } from './UserIdMother';
 import { UserEmailMother } from './UserEmailMother';
 import { UserPasswordMother } from './ UserPasswordMother';
 import { UserNameMother } from './UserNameMother';
+import { UserGithubIdMother } from './UserGithubIdMother';
+import { UserGithubId } from '../../../../../src/Contexts/Mooc/Users/Domain/UserGithubId';
 
 export class UserMother {
   static create({
     id,
     email,
     password,
-    name
+    name,
+    githubId
   }: {
     id: UserId;
     email: UserEmail;
     password: UserPassword;
     name: UserName;
+    githubId: UserGithubId;
   }): User {
     return new User({
       id,
       email,
       password,
-      name
+      name,
+      githubId
     });
   }
 
@@ -33,7 +38,8 @@ export class UserMother {
       id: UserIdMother.random(),
       email: UserEmailMother.random(),
       password: UserPasswordMother.random(),
-      name: UserNameMother.random()
+      name: UserNameMother.random(),
+      githubId: UserGithubIdMother.random()
     });
   }
 }
