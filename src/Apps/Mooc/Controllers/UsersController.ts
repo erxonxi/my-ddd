@@ -1,5 +1,5 @@
-import { Response, Controller, Put, Params, Body, Delete, Post } from '@decorators/express';
-import { Response as IResponse } from 'express';
+import { Response, Request, Controller, Put, Params, Body, Delete, Post, Get } from '@decorators/express';
+import { Response as IResponse, Request as IRequest } from 'express';
 import container from '../Injections';
 import { CreateUser } from '../../../Contexts/Mooc/Users/Application/CreateUser';
 import { UserId } from '../../../Contexts/Mooc/Users/Domain/UserId';
@@ -54,6 +54,15 @@ export class UsersController {
       res.status(200).send(users.map(u => u.toPrimitives()));
     } catch (e: any) {
       res.status(500).send({ message: e.message });
+    }
+  }
+
+  @Get('/me')
+  public async me(@Response() res: IResponse, @Request() req: IRequest) {
+    if (req.isAuthenticated()) {
+      res.status(200).json(req.user);
+    } else {
+      res.status(404).send('Unauthenticated');
     }
   }
 }
