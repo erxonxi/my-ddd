@@ -60,6 +60,14 @@ const config = convict({
       env: 'GITHUB_CLIENT_SECRET',
       default: ''
     }
+  },
+  cors: {
+    origin: {
+      doc: 'CORS Origin Available URLs',
+      format: Array,
+      env: 'CORS_ORIGIN',
+      default: '*'
+    }
   }
 });
 

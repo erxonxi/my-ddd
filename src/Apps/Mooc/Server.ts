@@ -22,6 +22,7 @@ import { Criteria } from '../../Contexts/Shared/Domain/Criteria/Criteria';
 import { User } from '../../Contexts/Mooc/Users/Domain/User';
 import { UserId } from '../../Contexts/Mooc/Users/Domain/UserId';
 import config from '../../Contexts/Mooc/Shared/Infrastructure/Config';
+import cors from 'cors';
 
 export class Server {
   private express: express.Express;
@@ -38,6 +39,7 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
+    this.express.use(cors({ origin: config.get('cors.origin'), credentials: true }));
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
@@ -45,10 +47,6 @@ export class Server {
     this.oauth(router);
 
     registerRoutes(router);
-
-    // router.use((err: Error, req: Request, res: Response) => {
-    //   console.error(err);
-    // });
   }
 
   async listen(): Promise<void> {
@@ -144,7 +142,7 @@ export class Server {
       '/auth/github/callback',
       passport.authenticate('github', { failureRedirect: '/login' }),
       (req: Request, res: Response) => {
-        res.redirect('/users/me');
+        res.redirect('http://localhost:3000/');
       }
     );
   }
