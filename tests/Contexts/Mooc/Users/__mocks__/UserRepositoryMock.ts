@@ -4,7 +4,7 @@ import { UserId } from '../../../../../src/Contexts/Mooc/Users/Domain/UserId';
 import { UserRepository } from '../../../../../src/Contexts/Mooc/Users/Domain/UserRepository';
 import { Nullable } from '../../../../../src/Contexts/Shared/Domain/Nullable';
 import { Criteria } from '../../../../../src/Contexts/Shared/Domain/Criteria/Criteria';
-import { Operator } from '../../../../../src/Contexts/Shared/Domain/Criteria/FilterOperator';
+import { CriteriaConverterArray } from '../../../Shared/Infrastructure/CriteriaConverterArray';
 
 export class UserRepositoryMock implements UserRepository {
   private mockSave = jest.fn();
@@ -57,33 +57,7 @@ export class UserRepositoryMock implements UserRepository {
   }
 
   public async find(criteria: Criteria): Promise<User[]> {
-    return this.fakeDb.filter(obj => {
-      const conditions: boolean[] = [];
-      const objPrimitives: any = obj.toPrimitives();
-      criteria.filters.filters.map(filter => {
-        switch (filter.operator.value.toString()) {
-          case Operator.EQUAL:
-            conditions.push(objPrimitives[filter.field.toString()] === filter.value.toString());
-            return;
-          case Operator.NOT_EQUAL:
-            conditions.push(objPrimitives[filter.field.toString()] !== filter.value.toString());
-            return;
-          case Operator.GT:
-            conditions.push(objPrimitives[filter.field.toString()] >= filter.value.toString());
-            return;
-          case Operator.LT:
-            conditions.push(objPrimitives[filter.field.toString()] <= filter.value.toString());
-            return;
-          case Operator.CONTAINS:
-            conditions.push(String(objPrimitives[filter.field.toString()]).includes(filter.value.toString()));
-            return;
-          case Operator.NOT_CONTAINS:
-            conditions.push(!String(objPrimitives[filter.field.toString()]).includes(filter.value.toString()));
-            return;
-        }
-      });
-      return conditions.every(e => e);
-    });
+    return CriteriaConverterArray.filter(this.fakeDb, criteria);
   }
 
   whenSearchThenReturn(value: Nullable<User>): void {
