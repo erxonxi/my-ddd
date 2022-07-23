@@ -1,18 +1,49 @@
 # RRP DDD
 
-Es un pequeño proyecto replicando el modelo de CodelyTV. He querido compartir esto ya que estava creando el proyecto para aprender más y usar las ultimas dependencias.
+Template Arquitectura Hexagonal basado en el ejemplo de CodelyTV. Este template esta echo con el fin de aprender mas y
+incluir ESlint y algunas librerias actualizadas.
 
-### Development Mooc Server 
+## Development
+
+### Start MongoDB & RabbitMQ (Docker)
+
+```sh
+docker-compose up -d
+```
+
+or
+
+```sh
+docker compose up -d
+```
+
+### Dev Mooc Server
 
 ```sh
 npm run dev:mooc
 ```
 
-### Tests Features Mooc Server 
+## Tests
+
+### All Tests
 
 ```sh
-npm run tests:features
+npm run tests
 ```
+
+### Features Tests Mooc Server
+
+```sh
+npm run test:mooc:features
+```
+
+### Tests Unit
+
+```sh
+npm run tests:unit
+```
+
+## Production Mooc Server
 
 ### Build
 
@@ -20,7 +51,7 @@ npm run tests:features
 npm run build
 ```
 
-### Production Mooc Server 
+### Start Mooc Server
 
 ```sh
 npm run start:mooc
