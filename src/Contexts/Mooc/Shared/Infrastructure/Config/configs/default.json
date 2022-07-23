@@ -8,5 +8,8 @@
   },
   "cors": {
     "origin": "http://localhost:3000"
+  },
+  "jwt": {
+    "secret": "change_me"
   }
 }

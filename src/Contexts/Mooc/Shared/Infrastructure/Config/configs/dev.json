@@ -1,5 +1,8 @@
 {
   "mongo": {
     "url": "mongodb://localhost:27017/mooc-dev"
+  },
+  "jwt": {
+    "secret": "j8934u78wht493"
   }
 }

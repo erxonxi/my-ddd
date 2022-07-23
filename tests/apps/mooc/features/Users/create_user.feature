@@ -9,3 +9,14 @@ Feature: Create User Feature
     }
     """
     Then the response status code should be 201
+
+  Scenario: Create Valid User
+    Given I send a PUT request to "/users/8281e1e4-4be1-4c3e-a4c6-ceda77001d6f" with body:
+    """
+    {
+      "name": "Alfredo2",
+      "email": "alfredo2@gmail.com",
+      "password": "superpassword"
+    }
+    """
+    Then the response status code should be 201

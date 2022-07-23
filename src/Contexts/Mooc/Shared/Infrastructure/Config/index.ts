@@ -47,26 +47,20 @@ const config = convict({
       default: 'DomainEvents'
     }
   },
-  github: {
-    clientId: {
-      doc: 'The GitHub ID',
-      format: String,
-      env: 'GITHUB_CLIENT_ID',
-      default: ''
-    },
-    clientSecret: {
-      doc: 'The GitHub Secret',
-      format: String,
-      env: 'GITHUB_CLIENT_SECRET',
-      default: ''
-    }
-  },
   cors: {
     origin: {
       doc: 'CORS Origin Available URLs',
       format: Array,
       env: 'CORS_ORIGIN',
       default: '*'
+    }
+  },
+  jwt: {
+    secret: {
+      doc: 'JsonWebToken Secret Key',
+      format: String,
+      env: 'JWT_SECRET',
+      default: 'change_me'
     }
   }
 });

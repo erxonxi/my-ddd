@@ -1,5 +1,5 @@
 import { Response, Request, Controller, Put, Params, Body, Delete, Post, Get } from '@decorators/express';
-import { Response as IResponse, Request as IRequest } from 'express';
+import { Response as IResponse } from 'express';
 import container from '../Injections';
 import { CreateUser } from '../../../Contexts/Mooc/Users/Application/CreateUser';
 import { UserId } from '../../../Contexts/Mooc/Users/Domain/UserId';
@@ -11,6 +11,9 @@ import { FindUsersByCriteria } from '../../../Contexts/Mooc/Users/Application/Fi
 import { Criteria } from '../../../Contexts/Shared/Domain/Criteria/Criteria';
 import { Filters } from '../../../Contexts/Shared/Domain/Criteria/Filters';
 import { Order } from '../../../Contexts/Shared/Domain/Criteria/Order';
+import { CreateSessionUser } from '../../../Contexts/Mooc/Users/Application/CreateSessionUser';
+import { JwtEncrypt } from '../../../Contexts/Shared/Infrastructure/Encrypt/JwtEncrypt';
+import { IRequestAuthenticated, SessionMiddleware } from '../Middlewares/SessionMiddleware';
 
 @Controller('/users')
 export class UsersController {
@@ -57,12 +60,30 @@ export class UsersController {
     }
   }
 
-  @Get('/me')
-  public async me(@Response() res: IResponse, @Request() req: IRequest) {
-    if (req.isAuthenticated()) {
-      res.status(200).json(req.user);
-    } else {
-      res.status(404).send('Unauthenticated');
+  @Post('/session')
+  public async createSessionUser(@Response() res: IResponse, @Params() params: any, @Body() body: any) {
+    const usecase = container.get('Mooc.Users.CreateSessionUser') as CreateSessionUser;
+    const jwt = container.get('Shared.JwtEncrypt') as JwtEncrypt;
+    try {
+      const { email, password } = body;
+
+      const session = await usecase.run({
+        email: new UserEmail(email.toString()),
+        password: new UserPassword(password.toString())
+      });
+
+      res.status(200).json({ token: jwt.encrypt(session) });
+    } catch (e: any) {
+      res.status(500).send({ message: e.message });
+    }
+  }
+
+  @Get('/session/me', [SessionMiddleware])
+  public async getSessionUser(@Request() req: IRequestAuthenticated, @Response() res: IResponse) {
+    try {
+      res.status(200).json(req.userSession.user);
+    } catch (e: any) {
+      res.status(500).send({ message: e.message });
     }
   }
 }

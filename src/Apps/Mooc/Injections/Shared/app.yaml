@@ -17,6 +17,15 @@ services:
   Shared.HashEncrypt:
     class: ../../../../Contexts/Shared/Infrastructure/Encrypt/HashEncrypt
 
+  Shared.JwtConfig:
+    factory:
+      class: ../../../../Contexts/Mooc/Shared/Infrastructure/Encrypt/JwtConfigFactory
+      method: 'createConfig'
+
+  Shared.JwtEncrypt:
+    class: ../../../../Contexts/Shared/Infrastructure/Encrypt/JwtEncrypt
+    arguments: [ '@Shared.JwtConfig' ]
+
   Shared.MongoCriteriaConverter:
     class: ../../../../Contexts/Shared/Infrastructure/Mongo/MongoCriteriaConverter
 

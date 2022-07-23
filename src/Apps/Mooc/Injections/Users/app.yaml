@@ -14,3 +14,7 @@ services:
   Mooc.Users.FindUsersByCriteria:
     class: ../../../../Contexts/Mooc/Users/Application/FindUsersByCriteria
     arguments: [ '@Mooc.Users.Repository' ]
+
+  Mooc.Users.CreateSessionUser:
+    class: ../../../../Contexts/Mooc/Users/Application/CreateSessionUser
+    arguments: [ '@Mooc.Users.Repository', '@Shared.HashEncrypt' ]
